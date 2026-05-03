@@ -115,7 +115,7 @@ This feature covers both lookup and quick-add. It does not cover bulk import, ed
 
 ## Open questions for the human
 
-1. **Card catalogue source (OQ-1 from intent):** which external API or dataset provides the authoritative card catalogue? This determines what "matching" means and what metadata is available. *(Must be resolved before `/design`.)*
+1. **Card catalogue source (OQ-1 from intent):** ~~which external API or dataset provides the authoritative card catalogue?~~ **Resolved — see [ADR-001](../../decisions/card-search/ADR-001-use-pokemontcg-io-as-card-catalogue.md).** Decision: pokemontcg.io API.
 2. **Collection entry beyond quick-add (OQ-2 from intent):** quick-add (US-4) is now in scope for this feature. Is bulk import from Jonas's existing spreadsheet also needed before this feature ships, or is one-by-one quick-add sufficient for the first version?
 3. **Location granularity (OQ-3 from intent):** what counts as a storage location? Binder name only (e.g. "Binder 3"), or binder + slot (e.g. "Binder 3 / page 4 / slot 2")? Criterion 2.3 and 4.5 use "binder or box label" as a placeholder.
 4. **Condition scale (OQ-4 from intent):** is NM / LP / MP / HP / DMG the correct scale, or does Jonas use different shorthand? Criterion 2.3 and 4.5 assume this scale.
@@ -126,3 +126,4 @@ This feature covers both lookup and quick-add. It does not cover bulk import, ed
 
 _v1 — initial draft, 2026-05-03_
 _v2 — applied design-critic and peer-reviewer feedback; resolved B1–B6, W1–W6, S1–S6; added US-4 (quick-add from search) based on human input confirming scope expansion; resolved OQ-6 (live search) and OQ-4 search scope, 2026-05-03_
+_v3 — OQ-1 resolved: pokemontcg.io selected as card catalogue API (ADR-001), 2026-05-03_
