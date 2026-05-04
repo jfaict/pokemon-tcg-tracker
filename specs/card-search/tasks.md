@@ -45,7 +45,7 @@ references:
 - [ ] 3. Search API + basic search page + first E2E happy path [fresh-ctx]
   - [x] 3.1 Write failing E2E test (`e2e/search-happy-path.spec.ts`, 375×812 viewport): authenticate → load `/` → assert "Type a card name to search" prompt visible; type "Pikachu" → debounce fires → assert at least one result card with name, set name, and collector number visible within 3 s [RED — search page does not exist yet]
         - References: REQ 1.1, 1.3, 1.4, 1.6, 3.1, 3.2, 3.3, 3.5
-  - [ ] 3.2 Write unit tests for `GET /api/search` internals: `validateQ()` accepts `"Charizard"`, rejects empty string, rejects whitespace-only, rejects `"<script>"` (invalid chars), rejects string >100 chars; merge function: given catalogue array and copies array, output has correct `copyCount` and nested `copies` for each card [RED]
+  - [x] 3.2 Write unit tests for `GET /api/search` internals: `validateQ()` accepts `"Charizard"`, rejects empty string, rejects whitespace-only, rejects `"<script>"` (invalid chars), rejects string >100 chars; merge function: given catalogue array and copies array, output has correct `copyCount` and nested `copies` for each card [RED]
         - References: REQ 1.3, 1.7, 2.1
   - [ ] 3.3 Implement `app/api/search/route.ts`: validate `q`, check per-session rate limit (in-memory Map, 60 req/min), proxy `GET /v2/cards?q=name:*{q}*&pageSize=20` to pokemontcg.io with `Authorization: Bearer PTCG_API_KEY`, `SELECT * FROM copies WHERE card_id IN (…)` from Turso, merge inline, return merged JSON [GREEN for 3.2]
         - References: REQ 1.1, 1.3, 1.6, 1.7, 2.1, 2.3, 2.5
