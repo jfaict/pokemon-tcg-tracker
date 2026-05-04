@@ -35,7 +35,7 @@ references:
         - References: NFR: Access model
   - [x] 2.3 Write tests for `middleware.ts` using Next.js test utilities: unauthenticated `GET /` → 302 redirect to `/login`; unauthenticated `GET /api/search` → 401; authenticated `GET /` (valid signed cookie) → passes through [RED]
         - References: NFR: Access model
-  - [ ] 2.4 Implement `middleware.ts`: verify signed cookie on all routes except `/login`; redirect page routes to `/login`, return 401 for API routes on failure [GREEN for 2.3]
+  - [x] 2.4 Implement `middleware.ts`: verify signed cookie on all routes except `/login`; redirect page routes to `/login`, return 401 for API routes on failure [GREEN for 2.3]
         - References: NFR: Access model
   - [ ] 2.5 Implement `app/login/page.tsx` (passphrase input form) and `POST /api/login` route (compare passphrase with `AUTH_PASSPHRASE`, set signed `HttpOnly` session cookie, redirect to `/`; return 401 on mismatch)
         - References: NFR: Access model
