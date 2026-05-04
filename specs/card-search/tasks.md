@@ -31,7 +31,7 @@ references:
 - [ ] 2. Auth layer (stub passphrase, ADR-003)
   - [x] 2.1 Write unit tests for `lib/auth.ts` (`auth.test.ts`): `sign()` produces a base64url string; `verify()` returns the sessionId for a valid cookie; `verify()` returns null for a tampered cookie; `verify()` returns null when the version claim does not match the current `AUTH_PASSPHRASE` hash [RED]
         - References: NFR: Access model
-  - [ ] 2.2 Implement `lib/auth.ts`: `sign(sessionId)` → HMAC-SHA256 cookie with version claim; `verify(cookie)` → sessionId or null [GREEN for 2.1]
+  - [x] 2.2 Implement `lib/auth.ts`: `sign(sessionId)` → HMAC-SHA256 cookie with version claim; `verify(cookie)` → sessionId or null [GREEN for 2.1]
         - References: NFR: Access model
   - [ ] 2.3 Write tests for `middleware.ts` using Next.js test utilities: unauthenticated `GET /` → 302 redirect to `/login`; unauthenticated `GET /api/search` → 401; authenticated `GET /` (valid signed cookie) → passes through [RED]
         - References: NFR: Access model
