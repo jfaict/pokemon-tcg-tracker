@@ -37,7 +37,7 @@ references:
         - References: NFR: Access model
   - [x] 2.4 Implement `middleware.ts`: verify signed cookie on all routes except `/login`; redirect page routes to `/login`, return 401 for API routes on failure [GREEN for 2.3]
         - References: NFR: Access model
-  - [ ] 2.5 Implement `app/login/page.tsx` (passphrase input form) and `POST /api/login` route (compare passphrase with `AUTH_PASSPHRASE`, set signed `HttpOnly` session cookie, redirect to `/`; return 401 on mismatch)
+  - [x] 2.5 Implement `app/login/page.tsx` (passphrase input form) and `POST /api/login` route (compare passphrase with `AUTH_PASSPHRASE`, set signed `HttpOnly` session cookie, redirect to `/`; return 401 on mismatch)
         - References: NFR: Access model
   - [ ] 2.6 Implement `POST /api/logout/route.ts`: clear session cookie, return 200; middleware will redirect to `/login` on the next request
         - References: NFR: Access model
