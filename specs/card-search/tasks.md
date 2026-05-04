@@ -33,7 +33,7 @@ references:
         - References: NFR: Access model
   - [x] 2.2 Implement `lib/auth.ts`: `sign(sessionId)` → HMAC-SHA256 cookie with version claim; `verify(cookie)` → sessionId or null [GREEN for 2.1]
         - References: NFR: Access model
-  - [ ] 2.3 Write tests for `middleware.ts` using Next.js test utilities: unauthenticated `GET /` → 302 redirect to `/login`; unauthenticated `GET /api/search` → 401; authenticated `GET /` (valid signed cookie) → passes through [RED]
+  - [x] 2.3 Write tests for `middleware.ts` using Next.js test utilities: unauthenticated `GET /` → 302 redirect to `/login`; unauthenticated `GET /api/search` → 401; authenticated `GET /` (valid signed cookie) → passes through [RED]
         - References: NFR: Access model
   - [ ] 2.4 Implement `middleware.ts`: verify signed cookie on all routes except `/login`; redirect page routes to `/login`, return 401 for API routes on failure [GREEN for 2.3]
         - References: NFR: Access model
