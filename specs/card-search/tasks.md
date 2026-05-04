@@ -39,7 +39,7 @@ references:
         - References: NFR: Access model
   - [x] 2.5 Implement `app/login/page.tsx` (passphrase input form) and `POST /api/login` route (compare passphrase with `AUTH_PASSPHRASE`, set signed `HttpOnly` session cookie, redirect to `/`; return 401 on mismatch)
         - References: NFR: Access model
-  - [ ] 2.6 Implement `POST /api/logout/route.ts`: clear session cookie, return 200; middleware will redirect to `/login` on the next request
+  - [x] 2.6 Implement `POST /api/logout/route.ts`: clear session cookie, return 200; middleware will redirect to `/login` on the next request
         - References: NFR: Access model
 
 - [ ] 3. Search API + basic search page + first E2E happy path [fresh-ctx]
