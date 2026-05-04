@@ -16,16 +16,16 @@ references:
 
 ---
 
-- [ ] 1. Project scaffold + database migration
-  - [ ] 1.1 Initialise Next.js project (App Router, TypeScript strict) with `npx create-next-app@latest`; confirm `app/`, `public/`, `tsconfig.json` are present
+- [x] 1. Project scaffold + database migration
+  - [x] 1.1 Initialise Next.js project (App Router, TypeScript strict) with `npx create-next-app@latest`; confirm `app/`, `public/`, `tsconfig.json` are present
         - References: Constitution: TypeScript, Next.js
-  - [ ] 1.2 Add runtime dependencies (`@libsql/client`, `uuid`) and dev dependencies (`@playwright/test`); add `.env.local.example` with `TURSO_DB_URL`, `TURSO_AUTH_TOKEN`, `AUTH_PASSPHRASE`, `PTCG_API_KEY`; wire all four as server-only env vars in `next.config.ts` (must not leak to client bundle)
+  - [x] 1.2 Add runtime dependencies (`@libsql/client`, `uuid`) and dev dependencies (`@playwright/test`); add `.env.local.example` with `TURSO_DB_URL`, `TURSO_AUTH_TOKEN`, `AUTH_PASSPHRASE`, `PTCG_API_KEY`; wire all four as server-only env vars in `next.config.ts` (must not leak to client bundle)
         - References: NFR: Access model (credentials server-side only), NFR: Hosting cost
-  - [ ] 1.3 Configure Playwright (`playwright.config.ts`): single project named `mobile` using viewport 375×812, baseURL `http://localhost:3000`
+  - [x] 1.3 Configure Playwright (`playwright.config.ts`): single project named `mobile` using viewport 375×812, baseURL `http://localhost:3000`
         - References: REQ 3.3, 3.4
-  - [ ] 1.4 Write migration test (`lib/migrations/migrations.test.ts`): runs `001_create_copies.sql` against an in-memory SQLite DB, then asserts via `PRAGMA table_info(copies)` that columns `id`, `card_id`, `condition`, `location`, `created_at` exist with correct types, and that `idx_copies_card_id` is present [RED]
+  - [x] 1.4 Write migration test (`lib/migrations/migrations.test.ts`): runs `001_create_copies.sql` against an in-memory SQLite DB, then asserts via `PRAGMA table_info(copies)` that columns `id`, `card_id`, `condition`, `location`, `created_at` exist with correct types, and that `idx_copies_card_id` is present [RED]
         - References: REQ 2.1, 2.3 (copies need condition, location)
-  - [ ] 1.5 Write `lib/migrations/001_create_copies.sql` (copies table + index per ADR-004) and `lib/db.ts` (Turso libsql client, read/write token); add `npm run db:migrate` script that runs all `lib/migrations/*.sql` files in order; wire script into Vercel build step in `package.json` [GREEN for 1.4]
+  - [x] 1.5 Write `lib/migrations/001_create_copies.sql` (copies table + index per ADR-004) and `lib/db.ts` (Turso libsql client, read/write token); add `npm run db:migrate` script that runs all `lib/migrations/*.sql` files in order; wire script into Vercel build step in `package.json` [GREEN for 1.4]
         - References: REQ 2.1, 2.3, NFR: Hosting cost
 
 - [ ] 2. Auth layer (stub passphrase, ADR-003)
