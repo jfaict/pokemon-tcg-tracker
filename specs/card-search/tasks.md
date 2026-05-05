@@ -67,7 +67,7 @@ references:
 - [ ] 5. Copies API + AddCopyForm (quick-add flow) [fresh-ctx]
   - [x] 5.1 Write unit tests for `POST /api/copies` input validation: `cardId` matching `/^[a-z0-9]+-[a-z0-9]+$/i` (max 32 chars) passes; invalid formats (`""`, `"../etc"`, too-long string) rejected with 400; condition not in `NM|LP|MP|HP|DMG` → 400; location empty after trim → 400; location 100 chars → accepted [RED]
         - References: REQ 4.5
-  - [ ] 5.2 Write integration tests for `POST /api/copies`: valid body → 201 with `{ copy: { id, cardId, condition, location } }`; confirm row inserted in DB; `created_at` stored but not returned; 401 with no cookie; 500 when Turso write fails (assert error message in response, not silent discard) [RED]
+  - [x] 5.2 Write integration tests for `POST /api/copies`: valid body → 201 with `{ copy: { id, cardId, condition, location } }`; confirm row inserted in DB; `created_at` stored but not returned; 401 with no cookie; 500 when Turso write fails (assert error message in response, not silent discard) [RED]
         - References: REQ 4.3, 4.4, 4.5
   - [ ] 5.3 Implement `app/api/copies/route.ts`: validate body fields, generate UUID v4 server-side, `INSERT INTO copies`, return 201 with copy (excluding `created_at`) [GREEN for 5.1, 5.2]
         - References: REQ 4.2, 4.3, 4.4, 4.5
