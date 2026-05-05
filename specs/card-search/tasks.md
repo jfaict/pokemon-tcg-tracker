@@ -69,7 +69,7 @@ references:
         - References: REQ 4.5
   - [x] 5.2 Write integration tests for `POST /api/copies`: valid body → 201 with `{ copy: { id, cardId, condition, location } }`; confirm row inserted in DB; `created_at` stored but not returned; 401 with no cookie; 500 when Turso write fails (assert error message in response, not silent discard) [RED]
         - References: REQ 4.3, 4.4, 4.5
-  - [ ] 5.3 Implement `app/api/copies/route.ts`: validate body fields, generate UUID v4 server-side, `INSERT INTO copies`, return 201 with copy (excluding `created_at`) [GREEN for 5.1, 5.2]
+  - [x] 5.3 Implement `app/api/copies/route.ts`: validate body fields, generate UUID v4 server-side, `INSERT INTO copies`, return 201 with copy (excluding `created_at`) [GREEN for 5.1, 5.2]
         - References: REQ 4.2, 4.3, 4.4, 4.5
   - [ ] 5.4 Write unit tests for `components/AddCopyForm.tsx` (`AddCopyForm.test.tsx`): renders condition `<select>` with options NM/LP/MP/HP/DMG and location `<input>`; Save button disabled when either field is empty; Save button disabled and spinner visible while `onSave` promise is pending; inline error text visible when `onSave` rejects [RED]
         - References: REQ 4.2, 4.4, 4.5
