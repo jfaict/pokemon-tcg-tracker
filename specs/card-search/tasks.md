@@ -85,7 +85,7 @@ references:
         - References: REQ 1.4
   - [x] 6.3 Implement all missing UI states in `app/page.tsx`: no-results message, search error banner with retry action, DB-read error banner (distinct copy), rate-limit message, 20-result refine prompt (when `results.length === 20`); suppress search call on whitespace [GREEN for 6.1, 6.2]
         - References: REQ 1.4, 1.5, 1.7, 2.5, 3.6
-  - [ ] 6.4 Write E2E test (`e2e/add-copy-failure.spec.ts`): mock `POST /api/copies` to return 500 → tap Save → "Couldn't save. Try again." visible inline in form; save button re-enabled; form stays open [RED → GREEN — fix AddCopyForm if needed]
+  - [x] 6.4 Write E2E test (`e2e/add-copy-failure.spec.ts`): mock `POST /api/copies` to return 500 → tap Save → "Couldn't save. Try again." visible inline in form; save button re-enabled; form stays open [RED → GREEN — fix AddCopyForm if needed]
         - References: REQ 4.4
 
 - [ ] 7. E2E screenshot suite + user-docs
