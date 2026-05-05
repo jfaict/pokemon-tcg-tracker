@@ -2,21 +2,21 @@ import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import Home from "./page";
 
-// Advance fake timers past the 300 ms debounce delay
 const PAST_DEBOUNCE = 400;
 
 describe("app/page.tsx — whitespace suppression (REQ 1.4)", () => {
-  let fetchSpy: ReturnType<typeof vi.spyOn>;
-
   beforeEach(() => {
     vi.useFakeTimers();
-    fetchSpy = vi.spyOn(globalThis, "fetch").mockResolvedValue(
-      new Response(JSON.stringify({ results: [] }), { status: 200 })
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue(
+        new Response(JSON.stringify({ results: [] }), { status: 200 })
+      )
     );
   });
 
   afterEach(() => {
-    fetchSpy.mockRestore();
+    vi.unstubAllGlobals();
     vi.useRealTimers();
   });
 
@@ -25,7 +25,7 @@ describe("app/page.tsx — whitespace suppression (REQ 1.4)", () => {
     await act(async () => {
       vi.advanceTimersByTime(PAST_DEBOUNCE);
     });
-    expect(fetchSpy).not.toHaveBeenCalled();
+    expect(vi.mocked(fetch)).not.toHaveBeenCalled();
   });
 
   it("does not call /api/search when the query is whitespace-only", async () => {
@@ -35,7 +35,7 @@ describe("app/page.tsx — whitespace suppression (REQ 1.4)", () => {
     await act(async () => {
       vi.advanceTimersByTime(PAST_DEBOUNCE);
     });
-    expect(fetchSpy).not.toHaveBeenCalled();
+    expect(vi.mocked(fetch)).not.toHaveBeenCalled();
   });
 
   it("shows 'Type a card name to search' prompt for whitespace-only query", async () => {
@@ -55,7 +55,7 @@ describe("app/page.tsx — whitespace suppression (REQ 1.4)", () => {
     await act(async () => {
       vi.advanceTimersByTime(PAST_DEBOUNCE);
     });
-    expect(fetchSpy).toHaveBeenCalledWith(
+    expect(vi.mocked(fetch)).toHaveBeenCalledWith(
       expect.stringContaining("/api/search?q=")
     );
   });
