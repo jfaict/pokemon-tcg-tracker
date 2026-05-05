@@ -28,7 +28,7 @@ references:
   - [x] 1.5 Write `lib/migrations/001_create_copies.sql` (copies table + index per ADR-004) and `lib/db.ts` (Turso libsql client, read/write token); add `npm run db:migrate` script that runs all `lib/migrations/*.sql` files in order; wire script into Vercel build step in `package.json` [GREEN for 1.4]
         - References: REQ 2.1, 2.3, NFR: Hosting cost
 
-- [ ] 2. Auth layer (stub passphrase, ADR-003)
+- [x] 2. Auth layer (stub passphrase, ADR-003)
   - [x] 2.1 Write unit tests for `lib/auth.ts` (`auth.test.ts`): `sign()` produces a base64url string; `verify()` returns the sessionId for a valid cookie; `verify()` returns null for a tampered cookie; `verify()` returns null when the version claim does not match the current `AUTH_PASSPHRASE` hash [RED]
         - References: NFR: Access model
   - [x] 2.2 Implement `lib/auth.ts`: `sign(sessionId)` → HMAC-SHA256 cookie with version claim; `verify(cookie)` → sessionId or null [GREEN for 2.1]
@@ -42,7 +42,7 @@ references:
   - [x] 2.6 Implement `POST /api/logout/route.ts`: clear session cookie, return 200; middleware will redirect to `/login` on the next request
         - References: NFR: Access model
 
-- [ ] 3. Search API + basic search page + first E2E happy path [fresh-ctx]
+- [x] 3. Search API + basic search page + first E2E happy path [fresh-ctx]
   - [x] 3.1 Write failing E2E test (`e2e/search-happy-path.spec.ts`, 375×812 viewport): authenticate → load `/` → assert "Type a card name to search" prompt visible; type "Pikachu" → debounce fires → assert at least one result card with name, set name, and collector number visible within 3 s [RED — search page does not exist yet]
         - References: REQ 1.1, 1.3, 1.4, 1.6, 3.1, 3.2, 3.3, 3.5
   - [x] 3.2 Write unit tests for `GET /api/search` internals: `validateQ()` accepts `"Charizard"`, rejects empty string, rejects whitespace-only, rejects `"<script>"` (invalid chars), rejects string >100 chars; merge function: given catalogue array and copies array, output has correct `copyCount` and nested `copies` for each card [RED]
@@ -54,7 +54,7 @@ references:
   - [x] 3.5 Implement `hooks/useDebounce.ts` (300 ms delay, resets on every call) with unit tests (`useDebounce.test.ts`): value updates after 300 ms; intermediate calls do not fire; returns immediately on unmount; implement `components/SearchInput.tsx` (controlled input, calls `useDebounce`, shows loading spinner immediately when fetch fires); implement `app/page.tsx` skeleton: search input as primary element, "Type a card name to search" empty state, plain result list (name / set / collector number) with no CardResult yet [GREEN for 3.1 E2E — capture screenshot]
         - References: REQ 1.1, 1.2, 1.4, 1.6, 3.1, 3.2, 3.3, 3.5
 
-- [ ] 4. CardResult component + inline copy display [fresh-ctx]
+- [x] 4. CardResult component + inline copy display [fresh-ctx]
   - [x] 4.1 Write unit tests for `components/CardResult.tsx` (`CardResult.test.tsx`): renders name, set name, collector number; `copyCount = 0` → copy count shows "0" as text and "Add to collection" button is present; `copyCount = 0` → no copy detail rows; `copyCount = 3` → three rows each showing condition and location; no "Add to collection" button when `copyCount > 0`; `copies.length = 6` → first 5 rows visible, "show more" control present [RED]
         - References: REQ 2.1, 2.2, 2.3, 2.4, 4.1, 4.6
   - [x] 4.2 Implement `components/CardResult.tsx`: renders catalogue card header + copy count as numeric text + conditional copy detail rows (max 5, inline "show more") + conditional "Add to collection" button [GREEN for 4.1]
@@ -64,7 +64,7 @@ references:
   - [x] 4.4 Write E2E test (`e2e/layout.spec.ts`): search a card with a name longer than 30 chars → assert no `text-overflow: ellipsis` and no horizontal scroll at 375 px width (use Playwright `evaluate` to check computed styles) [RED → GREEN — fix CSS if needed]
         - References: REQ 1.8
 
-- [ ] 5. Copies API + AddCopyForm (quick-add flow) [fresh-ctx]
+- [x] 5. Copies API + AddCopyForm (quick-add flow) [fresh-ctx]
   - [x] 5.1 Write unit tests for `POST /api/copies` input validation: `cardId` matching `/^[a-z0-9]+-[a-z0-9]+$/i` (max 32 chars) passes; invalid formats (`""`, `"../etc"`, too-long string) rejected with 400; condition not in `NM|LP|MP|HP|DMG` → 400; location empty after trim → 400; location 100 chars → accepted [RED]
         - References: REQ 4.5
   - [x] 5.2 Write integration tests for `POST /api/copies`: valid body → 201 with `{ copy: { id, cardId, condition, location } }`; confirm row inserted in DB; `created_at` stored but not returned; 401 with no cookie; 500 when Turso write fails (assert error message in response, not silent discard) [RED]
@@ -78,7 +78,7 @@ references:
   - [x] 5.6 Write E2E test (`e2e/add-copy.spec.ts`): search card with 0 copies → "Add to collection" button visible → tap → form opens with condition and location fields → fill NM + "Binder 1" → Save → copy count updates to "1" without page reload → capture screenshot; also assert Add button absent after success [RED → GREEN]
         - References: REQ 4.1, 4.2, 4.3, 4.4, 4.5, 4.6
 
-- [ ] 6. Error states + remaining edge cases
+- [x] 6. Error states + remaining edge cases
   - [x] 6.1 Write E2E tests (`e2e/error-states.spec.ts`): (a) search unknown term → "No cards found for '…'" message visible, no blank screen; (b) mock pokemontcg.io to return 500 → "Search is unavailable. Try again." banner + retry button visible; (c) mock Turso read to fail → distinct "Couldn't load your collection. Try again." banner visible (not a zero-copy result); (d) trigger rate limit (61 requests) → "Too many searches — wait a moment and try again" message; (e) search returning exactly 20 results → "Refine your search to see more" prompt visible [RED]
         - References: REQ 1.5, 1.7, 2.5, 3.6
   - [x] 6.2 Write unit test: `useDebounce` does not call fetch when the debounced value is whitespace-only; `app/page.tsx` does not call `/api/search` when query is empty or whitespace [RED]
@@ -88,7 +88,7 @@ references:
   - [x] 6.4 Write E2E test (`e2e/add-copy-failure.spec.ts`): mock `POST /api/copies` to return 500 → tap Save → "Couldn't save. Try again." visible inline in form; save button re-enabled; form stays open [RED → GREEN — fix AddCopyForm if needed]
         - References: REQ 4.4
 
-- [ ] 7. E2E screenshot suite + user-docs
+- [x] 7. E2E screenshot suite + user-docs
   - [x] 7.1 Verify portrait orientation at 375×812: run full E2E suite; assert no horizontal scrollbar and all interactive elements tappable in portrait layout
         - References: REQ 3.4
   - [x] 7.2 Capture all required user-docs screenshots with Playwright (`page.screenshot()`): (a) owned card with copy details visible, (b) unowned card with "Add to collection" button, (c) add form open with fields, (d) after save with copy count updated; save under `e2e/screenshots/card-search/`
@@ -134,13 +134,13 @@ Every EARS acceptance criterion is referenced by at least one test sub-task.
 
 ## Definition of done
 
-- [ ] All task boxes checked
-- [ ] All tests green (`npm test` + `npx playwright test`)
-- [ ] TypeScript strict mode — zero errors (`npm run typecheck`)
-- [ ] Linter clean (`npm run lint`)
-- [ ] Decision log updated for any choices made during execution (e.g. "show more" UX for >5 copies — inline expand vs. modal)
-- [ ] All required E2E screenshots captured under `e2e/screenshots/card-search/`
-- [ ] `user-docs/card-search.md` generated with correct front-matter and screenshot links
+- [x] All task boxes checked
+- [x] All tests green (`npm test` + `npx playwright test`)
+- [x] TypeScript strict mode — zero errors (`npm run typecheck`)
+- [x] Linter clean (`npm run lint`) — 4 warnings (unused vars in tests), zero errors
+- [x] Decision log updated for any choices made during execution (e.g. "show more" UX for >5 copies — inline expand vs. modal)
+- [x] All required E2E screenshots captured under `e2e/screenshots/card-search/`
+- [x] `user-docs/card-search.md` generated with correct front-matter and screenshot links
 
 ---
 
