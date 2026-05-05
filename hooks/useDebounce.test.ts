@@ -50,6 +50,17 @@ describe("useDebounce", () => {
     expect(result.current).toBe("abc");
   });
 
+  it("passes whitespace-only values through unchanged (caller is responsible for suppression)", () => {
+    const { result, rerender } = renderHook(({ v }) => useDebounce(v, 300), {
+      initialProps: { v: "hello" },
+    });
+    rerender({ v: "   " });
+    act(() => {
+      vi.advanceTimersByTime(300);
+    });
+    expect(result.current).toBe("   ");
+  });
+
   it("clears the timer on unmount without triggering a state update", () => {
     const { rerender, unmount } = renderHook(({ v }) => useDebounce(v, 300), {
       initialProps: { v: "initial" },
