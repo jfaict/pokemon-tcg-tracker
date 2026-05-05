@@ -308,3 +308,4 @@ sequenceDiagram
 
 _v1 — initial design draft, 2026-05-04_
 _v2 — applied code-simplifier and security-checker feedback: signed cookie auth, q sanitisation, cardId validation, rate limiting, inlined merge/pokemontcg/CopyList, dropped language column, dropped truncated field, clarified spinner, tightened error logging, added threat model and data retention notes, 2026-05-04_
+_v3 — added ADR-006 to trade-offs: lib/auth rewritten to Web Crypto API (Edge Runtime compatibility), POST /api/login returns 200 instead of 302 (Safari cookie persistence), 2026-05-05_
