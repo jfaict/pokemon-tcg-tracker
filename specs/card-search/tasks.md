@@ -55,7 +55,7 @@ references:
         - References: REQ 1.1, 1.2, 1.4, 1.6, 3.1, 3.2, 3.3, 3.5
 
 - [ ] 4. CardResult component + inline copy display [fresh-ctx]
-  - [ ] 4.1 Write unit tests for `components/CardResult.tsx` (`CardResult.test.tsx`): renders name, set name, collector number; `copyCount = 0` → copy count shows "0" as text and "Add to collection" button is present; `copyCount = 0` → no copy detail rows; `copyCount = 3` → three rows each showing condition and location; no "Add to collection" button when `copyCount > 0`; `copies.length = 6` → first 5 rows visible, "show more" control present [RED]
+  - [x] 4.1 Write unit tests for `components/CardResult.tsx` (`CardResult.test.tsx`): renders name, set name, collector number; `copyCount = 0` → copy count shows "0" as text and "Add to collection" button is present; `copyCount = 0` → no copy detail rows; `copyCount = 3` → three rows each showing condition and location; no "Add to collection" button when `copyCount > 0`; `copies.length = 6` → first 5 rows visible, "show more" control present [RED]
         - References: REQ 2.1, 2.2, 2.3, 2.4, 4.1, 4.6
   - [ ] 4.2 Implement `components/CardResult.tsx`: renders catalogue card header + copy count as numeric text + conditional copy detail rows (max 5, inline "show more") + conditional "Add to collection" button [GREEN for 4.1]
         - References: REQ 2.1, 2.2, 2.3, 2.4, 4.1, 4.6
