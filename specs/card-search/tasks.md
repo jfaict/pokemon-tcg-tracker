@@ -79,7 +79,7 @@ references:
         - References: REQ 4.1, 4.2, 4.3, 4.4, 4.5, 4.6
 
 - [ ] 6. Error states + remaining edge cases
-  - [ ] 6.1 Write E2E tests (`e2e/error-states.spec.ts`): (a) search unknown term → "No cards found for '…'" message visible, no blank screen; (b) mock pokemontcg.io to return 500 → "Search is unavailable. Try again." banner + retry button visible; (c) mock Turso read to fail → distinct "Couldn't load your collection. Try again." banner visible (not a zero-copy result); (d) trigger rate limit (61 requests) → "Too many searches — wait a moment and try again" message; (e) search returning exactly 20 results → "Refine your search to see more" prompt visible [RED]
+  - [x] 6.1 Write E2E tests (`e2e/error-states.spec.ts`): (a) search unknown term → "No cards found for '…'" message visible, no blank screen; (b) mock pokemontcg.io to return 500 → "Search is unavailable. Try again." banner + retry button visible; (c) mock Turso read to fail → distinct "Couldn't load your collection. Try again." banner visible (not a zero-copy result); (d) trigger rate limit (61 requests) → "Too many searches — wait a moment and try again" message; (e) search returning exactly 20 results → "Refine your search to see more" prompt visible [RED]
         - References: REQ 1.5, 1.7, 2.5, 3.6
   - [ ] 6.2 Write unit test: `useDebounce` does not call fetch when the debounced value is whitespace-only; `app/page.tsx` does not call `/api/search` when query is empty or whitespace [RED]
         - References: REQ 1.4
