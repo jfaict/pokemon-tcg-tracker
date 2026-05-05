@@ -74,7 +74,7 @@ describe("GET /api/search — integration error paths", () => {
   it("returns 400 when q is empty", async () => {
     const { sign } = await import("@/lib/auth");
     const { GET } = await import("./route");
-    const req = makeReq("", sign("sess-1"));
+    const req = makeReq("", await sign("sess-1"));
     const res = await GET(req);
     expect(res.status).toBe(400);
   });
@@ -82,7 +82,7 @@ describe("GET /api/search — integration error paths", () => {
   it("returns 400 when q contains invalid characters", async () => {
     const { sign } = await import("@/lib/auth");
     const { GET } = await import("./route");
-    const req = makeReq("<script>", sign("sess-2"));
+    const req = makeReq("<script>", await sign("sess-2"));
     const res = await GET(req);
     expect(res.status).toBe(400);
   });
@@ -90,7 +90,7 @@ describe("GET /api/search — integration error paths", () => {
   it("returns 429 after 60 requests in the same window (rate limit)", async () => {
     const { sign } = await import("@/lib/auth");
     const { GET } = await import("./route");
-    const cookie = sign("rate-sess");
+    const cookie = await sign("rate-sess");
 
     for (let i = 0; i < 60; i++) {
       const res = await GET(makeReq("Pikachu", cookie));
@@ -107,7 +107,7 @@ describe("GET /api/search — integration error paths", () => {
     vi.stubGlobal("fetch", fetchThrows());
     const { sign } = await import("@/lib/auth");
     const { GET } = await import("./route");
-    const req = makeReq("Pikachu", sign("sess-3"));
+    const req = makeReq("Pikachu", await sign("sess-3"));
     const res = await GET(req);
     expect(res.status).toBe(502);
     const body = await res.json();
@@ -122,7 +122,7 @@ describe("GET /api/search — integration error paths", () => {
 
     const { sign } = await import("@/lib/auth");
     const { GET } = await import("./route");
-    const req = makeReq("Pikachu", sign("sess-4"));
+    const req = makeReq("Pikachu", await sign("sess-4"));
     const res = await GET(req);
     expect(res.status).toBe(500);
     const body = await res.json();

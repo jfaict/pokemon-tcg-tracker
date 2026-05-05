@@ -8,7 +8,7 @@ describe("POST /api/login", () => {
     vi.resetModules();
   });
 
-  it("correct passphrase → 302 to / with session cookie", async () => {
+  it("correct passphrase → 200 with session cookie", async () => {
     const { POST } = await import("./route");
     const req = new Request("http://localhost:3000/api/login", {
       method: "POST",
@@ -16,9 +16,7 @@ describe("POST /api/login", () => {
       body: JSON.stringify({ passphrase: PASSPHRASE }),
     });
     const res = await POST(req);
-    expect(res.status).toBe(302);
-    const location = res.headers.get("location") ?? "";
-    expect(new URL(location).pathname).toBe("/");
+    expect(res.status).toBe(200);
     const setCookie = res.headers.get("set-cookie") ?? "";
     expect(setCookie).toContain("session=");
     expect(setCookie.toLowerCase()).toContain("httponly");

@@ -6,12 +6,12 @@ const SESSION_COOKIE = "session";
 export async function middleware(req: NextRequest): Promise<NextResponse> {
   const { pathname } = req.nextUrl;
 
-  if (pathname.startsWith("/login")) {
+  if (pathname.startsWith("/login") || pathname === "/api/login") {
     return NextResponse.next();
   }
 
   const cookieValue = req.cookies.get(SESSION_COOKIE)?.value ?? "";
-  const sessionId = verify(cookieValue);
+  const sessionId = await verify(cookieValue);
 
   if (!sessionId) {
     if (pathname.startsWith("/api/")) {

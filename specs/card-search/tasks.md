@@ -51,7 +51,7 @@ references:
         - References: REQ 1.1, 1.3, 1.6, 1.7, 2.1, 2.3, 2.5
   - [x] 3.4 Write integration tests for `GET /api/search` error paths (using pokemontcg.io mock and real in-memory SQLite): 400 on empty `q`, 400 on invalid chars, 401 on missing cookie, 429 on rate limit exceeded, 502 when pokemontcg.io is unreachable, 500 when Turso read fails (assert response is not a 0-copy result — REQ 2.5) [RED → GREEN via 3.3]
         - References: REQ 1.4, 2.5, 3.6, NFR: Access model
-  - [ ] 3.5 Implement `hooks/useDebounce.ts` (300 ms delay, resets on every call) with unit tests (`useDebounce.test.ts`): value updates after 300 ms; intermediate calls do not fire; returns immediately on unmount; implement `components/SearchInput.tsx` (controlled input, calls `useDebounce`, shows loading spinner immediately when fetch fires); implement `app/page.tsx` skeleton: search input as primary element, "Type a card name to search" empty state, plain result list (name / set / collector number) with no CardResult yet [GREEN for 3.1 E2E — capture screenshot]
+  - [x] 3.5 Implement `hooks/useDebounce.ts` (300 ms delay, resets on every call) with unit tests (`useDebounce.test.ts`): value updates after 300 ms; intermediate calls do not fire; returns immediately on unmount; implement `components/SearchInput.tsx` (controlled input, calls `useDebounce`, shows loading spinner immediately when fetch fires); implement `app/page.tsx` skeleton: search input as primary element, "Type a card name to search" empty state, plain result list (name / set / collector number) with no CardResult yet [GREEN for 3.1 E2E — capture screenshot]
         - References: REQ 1.1, 1.2, 1.4, 1.6, 3.1, 3.2, 3.3, 3.5
 
 - [ ] 4. CardResult component + inline copy display [fresh-ctx]

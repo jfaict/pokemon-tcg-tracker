@@ -69,7 +69,7 @@ function checkRateLimit(sessionId: string): boolean {
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
   const cookieValue = req.cookies.get("session")?.value ?? "";
-  const sessionId = verify(cookieValue);
+  const sessionId = await verify(cookieValue);
   if (!sessionId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }

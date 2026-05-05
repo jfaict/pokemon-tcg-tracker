@@ -41,9 +41,9 @@ export async function POST(req: Request): Promise<NextResponse> {
   }
 
   const sessionId = uuidv4();
-  const cookieValue = sign(sessionId);
+  const cookieValue = await sign(sessionId);
 
-  const res = NextResponse.redirect(new URL("/", req.url), { status: 302 });
+  const res = NextResponse.json({ ok: true }, { status: 200 });
   res.cookies.set(SESSION_COOKIE, cookieValue, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",

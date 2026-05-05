@@ -29,7 +29,7 @@ describe("middleware", () => {
   it("authenticated GET / (valid signed cookie) → passes through", async () => {
     const { sign } = await import("./lib/auth");
     const { middleware } = await import("./middleware");
-    const cookie = sign("test-session-id");
+    const cookie = await sign("test-session-id");
     const req = new NextRequest("http://localhost:3000/", {
       headers: { cookie: `${SESSION_COOKIE}=${cookie}` },
     });
