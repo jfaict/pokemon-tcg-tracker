@@ -89,7 +89,7 @@ references:
         - References: REQ 4.4
 
 - [ ] 7. E2E screenshot suite + user-docs
-  - [ ] 7.1 Verify portrait orientation at 375×812: run full E2E suite; assert no horizontal scrollbar and all interactive elements tappable in portrait layout
+  - [x] 7.1 Verify portrait orientation at 375×812: run full E2E suite; assert no horizontal scrollbar and all interactive elements tappable in portrait layout
         - References: REQ 3.4
   - [ ] 7.2 Capture all required user-docs screenshots with Playwright (`page.screenshot()`): (a) owned card with copy details visible, (b) unowned card with "Add to collection" button, (c) add form open with fields, (d) after save with copy count updated; save under `e2e/screenshots/card-search/`
         - References: REQ 1.6, 2.3, 4.3
