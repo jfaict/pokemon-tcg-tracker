@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { AddCopyForm } from "./AddCopyForm";
+
+type Condition = "NM" | "LP" | "MP" | "HP" | "DMG";
 
 interface Card {
   id: string;
@@ -11,7 +14,7 @@ interface Card {
 
 interface Copy {
   id: string;
-  condition: "NM" | "LP" | "MP" | "HP" | "DMG";
+  condition: Condition;
   location: string;
 }
 
@@ -21,11 +24,26 @@ interface Props {
   copyCount: number;
 }
 
-export function CardResult({ card, copies, copyCount }: Props) {
+export function CardResult({ card, copies, copyCount: initialCopyCount }: Props) {
   const [showAll, setShowAll] = useState(false);
+  const [addFormOpen, setAddFormOpen] = useState(false);
+  const [copyCount, setCopyCount] = useState(initialCopyCount);
 
   const visibleCopies = showAll ? copies : copies.slice(0, 5);
   const hasMore = copies.length > 5 && !showAll;
+
+  async function handleSave(condition: Condition, location: string) {
+    const res = await fetch("/api/copies", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ cardId: card.id, condition, location }),
+    });
+    if (!res.ok) {
+      throw new Error("Couldn't save. Try again.");
+    }
+    setAddFormOpen(false);
+    setCopyCount(1);
+  }
 
   return (
     <div data-testid="card-result">
@@ -60,8 +78,12 @@ export function CardResult({ card, copies, copyCount }: Props) {
         </button>
       )}
 
-      {copyCount === 0 && (
-        <button>Add to collection</button>
+      {copyCount === 0 && !addFormOpen && (
+        <button onClick={() => setAddFormOpen(true)}>Add to collection</button>
+      )}
+
+      {copyCount === 0 && addFormOpen && (
+        <AddCopyForm onSave={handleSave} />
       )}
     </div>
   );
