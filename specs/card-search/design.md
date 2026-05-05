@@ -295,6 +295,7 @@ sequenceDiagram
 - **Separate `lib/merge.ts`, `lib/pokemontcg.ts`, `CopyList.tsx`** → all inlined. Rejected after code-simplifier review: each is used in exactly one place and adds a file-hop without testability gain.
 - **`truncated` response field** → dropped. Client checks `results.length >= 20`; no server flag needed.
 - **Unit test runner: Vitest vs Jest** → Vitest chosen for zero TypeScript config and fast cold start. See [ADR-005](../../decisions/card-search/ADR-005-use-vitest-as-unit-test-runner.md).
+- **Web Crypto API vs Node.js crypto in auth; login 200 vs 302** → Web Crypto chosen so `lib/auth.ts` works in the Edge Runtime (Next.js middleware); login returns 200 + Set-Cookie to avoid Safari's failure to persist cookies from fetch-followed redirects. See [ADR-006](../../decisions/card-search/ADR-006-web-crypto-api-and-login-200-response.md).
 
 ## Open questions
 
