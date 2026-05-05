@@ -66,6 +66,12 @@ test.describe("add copy flow", () => {
     });
     await expect(addButton).toBeVisible();
 
+    // (b) unowned card with "Add to collection" button
+    await page.screenshot({
+      path: "e2e/screenshots/card-search/add-button.png",
+      fullPage: false,
+    });
+
     // Intercept POST /api/copies response to capture copy ID for afterAll cleanup
     const responsePromise = page.waitForResponse(
       (resp) =>
@@ -79,6 +85,12 @@ test.describe("add copy flow", () => {
     // REQ 4.5: condition select and location input are visible
     await expect(targetResult.getByLabel("Condition")).toBeVisible();
     await expect(targetResult.getByLabel("Location")).toBeVisible();
+
+    // (c) add form open with fields visible
+    await page.screenshot({
+      path: "e2e/screenshots/card-search/add-form.png",
+      fullPage: false,
+    });
 
     // Save button is disabled until both fields are filled
     const saveButton = targetResult.getByRole("button", { name: /^Save/ });
