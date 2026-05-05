@@ -93,7 +93,7 @@ references:
         - References: REQ 3.4
   - [x] 7.2 Capture all required user-docs screenshots with Playwright (`page.screenshot()`): (a) owned card with copy details visible, (b) unowned card with "Add to collection" button, (c) add form open with fields, (d) after save with copy count updated; save under `e2e/screenshots/card-search/`
         - References: REQ 1.6, 2.3, 4.3
-  - [ ] 7.3 Run `/doc card-search` to generate `user-docs/card-search.md` from acceptance criteria + screenshots; verify front-matter includes `spec: specs/card-search/requirements.md`, `adrs: [ADR-001, ADR-002, ADR-003, ADR-004]`, `last-verified: <today>`
+  - [x] 7.3 Run `/doc card-search` to generate `user-docs/card-search.md` from acceptance criteria + screenshots; verify front-matter includes `spec: specs/card-search/requirements.md`, `adrs: [ADR-001, ADR-002, ADR-003, ADR-004]`, `last-verified: <today>`
         - References: REQ 1.1–4.6 (user-docs covers full feature)
 
 ---
