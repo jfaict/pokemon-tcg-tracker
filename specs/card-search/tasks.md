@@ -61,7 +61,7 @@ references:
         - References: REQ 2.1, 2.2, 2.3, 2.4, 4.1, 4.6
   - [x] 4.3 Replace plain result list in `app/page.tsx` with `CardResult`; write E2E test (`e2e/copy-details.spec.ts`): seed DB with one owned copy of a Pikachu card → search "Pikachu" → assert copy count "1", condition, and location visible inline on a single screen (no navigation) → capture screenshot [RED → GREEN]
         - References: REQ 2.1, 2.2, 2.3, 3.2
-  - [ ] 4.4 Write E2E test (`e2e/layout.spec.ts`): search a card with a name longer than 30 chars → assert no `text-overflow: ellipsis` and no horizontal scroll at 375 px width (use Playwright `evaluate` to check computed styles) [RED → GREEN — fix CSS if needed]
+  - [x] 4.4 Write E2E test (`e2e/layout.spec.ts`): search a card with a name longer than 30 chars → assert no `text-overflow: ellipsis` and no horizontal scroll at 375 px width (use Playwright `evaluate` to check computed styles) [RED → GREEN — fix CSS if needed]
         - References: REQ 1.8
 
 - [ ] 5. Copies API + AddCopyForm (quick-add flow) [fresh-ctx]
