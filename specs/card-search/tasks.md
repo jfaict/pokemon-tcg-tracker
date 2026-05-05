@@ -71,7 +71,7 @@ references:
         - References: REQ 4.3, 4.4, 4.5
   - [x] 5.3 Implement `app/api/copies/route.ts`: validate body fields, generate UUID v4 server-side, `INSERT INTO copies`, return 201 with copy (excluding `created_at`) [GREEN for 5.1, 5.2]
         - References: REQ 4.2, 4.3, 4.4, 4.5
-  - [ ] 5.4 Write unit tests for `components/AddCopyForm.tsx` (`AddCopyForm.test.tsx`): renders condition `<select>` with options NM/LP/MP/HP/DMG and location `<input>`; Save button disabled when either field is empty; Save button disabled and spinner visible while `onSave` promise is pending; inline error text visible when `onSave` rejects [RED]
+  - [x] 5.4 Write unit tests for `components/AddCopyForm.tsx` (`AddCopyForm.test.tsx`): renders condition `<select>` with options NM/LP/MP/HP/DMG and location `<input>`; Save button disabled when either field is empty; Save button disabled and spinner visible while `onSave` promise is pending; inline error text visible when `onSave` rejects [RED]
         - References: REQ 4.2, 4.4, 4.5
   - [ ] 5.5 Implement `components/AddCopyForm.tsx` (inline condition select + location text input + Save/spinner/error); wire into `CardResult`: form renders only when `copyCount === 0`, closes on save success and increments count to 1 locally, shows inline error on failure [GREEN for 5.4]
         - References: REQ 4.1, 4.2, 4.3, 4.4, 4.5, 4.6
