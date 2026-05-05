@@ -57,7 +57,7 @@ references:
 - [ ] 4. CardResult component + inline copy display [fresh-ctx]
   - [x] 4.1 Write unit tests for `components/CardResult.tsx` (`CardResult.test.tsx`): renders name, set name, collector number; `copyCount = 0` → copy count shows "0" as text and "Add to collection" button is present; `copyCount = 0` → no copy detail rows; `copyCount = 3` → three rows each showing condition and location; no "Add to collection" button when `copyCount > 0`; `copies.length = 6` → first 5 rows visible, "show more" control present [RED]
         - References: REQ 2.1, 2.2, 2.3, 2.4, 4.1, 4.6
-  - [ ] 4.2 Implement `components/CardResult.tsx`: renders catalogue card header + copy count as numeric text + conditional copy detail rows (max 5, inline "show more") + conditional "Add to collection" button [GREEN for 4.1]
+  - [x] 4.2 Implement `components/CardResult.tsx`: renders catalogue card header + copy count as numeric text + conditional copy detail rows (max 5, inline "show more") + conditional "Add to collection" button [GREEN for 4.1]
         - References: REQ 2.1, 2.2, 2.3, 2.4, 4.1, 4.6
   - [ ] 4.3 Replace plain result list in `app/page.tsx` with `CardResult`; write E2E test (`e2e/copy-details.spec.ts`): seed DB with one owned copy of a Pikachu card → search "Pikachu" → assert copy count "1", condition, and location visible inline on a single screen (no navigation) → capture screenshot [RED → GREEN]
         - References: REQ 2.1, 2.2, 2.3, 3.2
