@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { SearchInput } from "@/components/SearchInput";
+import { CardResult } from "@/components/CardResult";
 
 interface CardEntry {
   card: {
@@ -10,7 +11,7 @@ interface CardEntry {
     set: { name: string };
     number: string;
   };
-  copies: Array<{ id: string; condition: string; location: string }>;
+  copies: Array<{ id: string; condition: "NM" | "LP" | "MP" | "HP" | "DMG"; location: string }>;
   copyCount: number;
 }
 
@@ -51,12 +52,12 @@ export default function Home() {
       {results && results.length > 0 && (
         <ul>
           {results.map((r) => (
-            <li key={r.card.id} data-testid="card-result">
-              <span data-testid="card-name">{r.card.name}</span>
-              {" "}
-              <span data-testid="card-set">{r.card.set.name}</span>
-              {" "}
-              <span data-testid="card-number">{r.card.number}</span>
+            <li key={r.card.id}>
+              <CardResult
+                card={r.card}
+                copies={r.copies}
+                copyCount={r.copyCount}
+              />
             </li>
           ))}
         </ul>

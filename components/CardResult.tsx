@@ -28,13 +28,13 @@ export function CardResult({ card, copies, copyCount }: Props) {
   const hasMore = copies.length > 5 && !showAll;
 
   return (
-    <div>
+    <div data-testid="card-result">
       <div>
-        <span>{card.name}</span>
+        <span data-testid="card-name">{card.name}</span>
         {" "}
-        <span>{card.set.name}</span>
+        <span data-testid="card-set">{card.set.name}</span>
         {" "}
-        <span>{card.number}</span>
+        <span data-testid="card-number">{card.number}</span>
         {" "}
         <span data-testid="copy-count">{copyCount}</span>
       </div>
